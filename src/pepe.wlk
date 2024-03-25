@@ -66,8 +66,8 @@ object montoFijo  {
 	}
 }
 
-object nulo {
-	method valor(empleado) {
+object resultadoNulo {
+	method bonoPorResultado(empleado) {
 		return 0
 	}
 }
@@ -82,6 +82,11 @@ object demagogico {
 	method valor(empleado) {
 		return if (empleado.neto()< 18000) {500}
 				else 300
+	}
+}
+object presentismoNulo {
+	method valor(empleado) {
+		return 0
 	}
 }
 
@@ -101,7 +106,22 @@ object presentismonulo {
 }
 
 object sofia {
-	method sueldo 
+	var categoria = cadete
+	var bonoPorResultado= resultadoNulo
+	
+	method categoria (_categoria) {
+		categoria = _categoria
+	}
+	method sueldo() {
+		return self.neto() + self.resultado()
+	}
+	method neto() {
+		return categoria.neto() + 1.3
+	}
+	
+	method resultado(){
+		return bonoPorResultado.bonoPorResultado(self) 
+	}
 }
 
 
