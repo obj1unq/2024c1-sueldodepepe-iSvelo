@@ -9,5 +9,7 @@ describe "Sueldo Pepe" {
 		pepe.faltas(3)
 		assert.equals(20800,pepe.sueldo())
 	}
+	
+	
 }
 
