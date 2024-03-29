@@ -84,5 +84,42 @@ describe "sueldo roque" {
 
 }
 
-//Realizar un test con pepe cadete con bono de resultados por porcentaje, bono por presentismo normal, nunca faltó. Debería tener $24000 de sueldo.
-//Realizar un test con pepe cadete con bono de resultados por porcentaje, bono por presentismo normal, falto 1 día. Debería tener $23000 de sueldo.      
+describe "sueldo ernesto" {
+
+	test "ernesto trabaja con roque, presentimo nulo debe cobrar 28000 " {
+		ernesto.companiero(roque)
+		ernesto.bonoPorPresentismo(presentismoNulo)
+		assert.equals(28000, ernesto.sueldo())
+	}
+
+	test "ernesto presentismo ajuste, trabaja con sofia cuya categoria es vendedor sin muchas ventas, ernesto debe cobrar 20900 " {
+		sofia.categoria(vendedor)
+		vendedor.desactivarAumentoPorMuchasVentas()
+		ernesto.companiero(sofia)
+		ernesto.bonoPorPresentismo(ajuste)
+		assert.equals(20900, ernesto.sueldo())
+	}
+
+}
+
+describe "sueldo de Pepe, Roque y Ernesto a la vez" {
+
+	test "La categoría base de medio tiempo es cadete,
+			Pepe tiene categoría cadete de medio tiempo, bono por resultados de porcentaje, y bono por presentismo demagógico, falto una vez, el sueldo de Pepe es 11500
+			Roque tiene bono por resultados monto fijo debe cobrare es 37800
+			Ernesto tiene como compañero a Pepe, y bono por presentismo de ajuste el sueldo es Ernesto es 10100" {
+		medioTiempo.categoriaBase(cadete)
+		pepe.categoria(medioTiempo)
+		pepe.bonoPorResultado(porcentaje)
+		pepe.bonoPorPresentismo(demagogico)
+		pepe.faltas(1)
+		assert.equals(11500, pepe.sueldo())
+		roque.bonoPorResultado(montoFijo)
+		assert.equals(37800, roque.sueldo())
+		ernesto.companiero(pepe)
+		ernesto.bonoPorPresentismo(ajuste)
+		assert.equals(10100, ernesto.sueldo())
+	}
+
+}
+
