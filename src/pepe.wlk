@@ -211,3 +211,35 @@ object roque {
 
 }
 
+object ernesto {
+
+	var companiero = pepe
+	var bonoPorPresentismo = presentismoNulo
+	const faltas = 0
+
+	method bonoPorPresentismo(_bonoPorPresentismo) {
+		bonoPorPresentismo = _bonoPorPresentismo
+	}
+
+	method faltas() {
+		return faltas
+	}
+
+	method companiero(_companiero) {
+		companiero = _companiero
+	}
+
+	method neto() {
+		return companiero.neto()
+	}
+
+	method sueldo() {
+		return self.neto() + self.presentismo()
+	}
+
+	method presentismo() {
+		return bonoPorPresentismo.valor(self)
+	}
+
+}
+
