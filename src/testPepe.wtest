@@ -1,5 +1,6 @@
 import pepe.*
 
+
 describe "Sueldo Pepe" {
 	
 	test "pepe cadete, monto Fijo, presentismo normal" {
@@ -10,6 +11,30 @@ describe "Sueldo Pepe" {
 		assert.equals(20800,pepe.sueldo())
 	}
 	
+	test "pepe gerente, bono porcentaje, presentismo nulo sueldo debe ser 16500" {
+		pepe.categoria(gerente)
+		pepe.bonoPorResultado(porcentaje)
+		pepe.bonoPorPresentismo(presentismoNulo)
+		assert.equals(16500,pepe.sueldo())
+	}
 	
+	test "pepe cadete, bono x resultado porcentaje, bono por presentismo normal suledo debe ser 24000 " {
+		pepe.categoria(cadete)
+		pepe.bonoPorResultado(porcentaje)
+		pepe.bonoPorPresentismo(normal)
+		pepe.faltas(0)
+		assert.equals(24000,pepe.sueldo())
+	}
+	
+	test "pepe cadete, bono x resultado porcentaje, bono por presentismo normal falto 1 dia sueldo debe ser de 23000"{
+	pepe.categoria(cadete)
+		pepe.bonoPorResultado(porcentaje)
+		pepe.bonoPorPresentismo(normal)
+		pepe.faltas(1)
+		assert.equals(23000,pepe.sueldo())
 }
+}
+//Realizar un test con pepe cadete con bono de resultados por porcentaje, bono por presentismo normal, nunca faltó. Debería tener $24000 de sueldo.
 
+
+//Realizar un test con pepe cadete con bono de resultados por porcentaje, bono por presentismo normal, falto 1 día. Debería tener $23000 de sueldo.
