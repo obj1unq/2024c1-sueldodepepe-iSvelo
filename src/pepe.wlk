@@ -73,12 +73,26 @@ object vendedor {
 
 	method neto() {
 		return if (self.hayMuchasVentas()) {
-			16000
-		} else 20000
+			20000
+		} else 16000
 	}
 
 	method hayMuchasVentas() {
 		return aumentoDeVentas
+	}
+
+}
+
+object medioTiempo {
+
+	var categoriaBase = self
+
+	method categoriaBase(categoria) {
+		categoriaBase = categoria
+	}
+
+	method neto() {
+		return categoriaBase.neto() / 2
 	}
 
 }
@@ -147,14 +161,6 @@ object normal {
 
 }
 
-object presentismonulo {
-
-	method valor(empleado) {
-		return 0
-	}
-
-}
-
 object sofia {
 
 	var categoria = cadete
@@ -173,7 +179,30 @@ object sofia {
 	}
 
 	method neto() {
-		return categoria.neto() + 1.3
+		return categoria.neto() * 1.3
+	}
+
+	method resultado() {
+		return bonoPorResultado.bonoPorResultado(self)
+	}
+
+}
+
+object roque {
+
+	const neto = 28000
+	var bonoPorResultado = porcentaje
+
+	method neto() {
+		return neto
+	}
+
+	method bonoPorResultado(_bonoPorResultado) {
+		bonoPorResultado = _bonoPorResultado
+	}
+
+	method sueldo() {
+		return neto + self.resultado() + 9000
 	}
 
 	method resultado() {
